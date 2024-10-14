@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Pesquisa</title>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1>Resultados da Pesquisa</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="local : ${locais}">
+            <td th:text="${local.id}"></td>
+            <td th:text="${local.nome}"></td>
+            <td>
+                <a href="@{/local/excluir(id=${local.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/local/pesquisa}" class="btn btn-success">Nova Pesquisa</a>
+</div>
+</body>
+</html>

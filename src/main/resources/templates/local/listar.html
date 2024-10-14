@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Locais</title>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1>Lista de Locais</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Localização</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="local : ${local}">
+            <td th:text="${local.nome}"></td>
+            <td th:text="${local.descricao}"></td>
+            <td th:text="${local.localizacao}"></td>
+            <td th:text="${local.status.getLabel()}"></td>
+            <td>
+                <a th:href="@{/local/editar/{id}(id=${local.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/local/excluir/{id}(id=${local.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/local/cadastro}" class="btn btn-success">Cadastrar Novo Local</a>
+</div>
+</body>
+</html>
